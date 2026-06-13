@@ -8,6 +8,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+"))
 
 conversation_history = {}
 
@@ -22,7 +23,7 @@ def health():
 @app.route("/chat", methods=["POST"])
 def chat():
     try:
-        data = request.get_json()
+        data = request.get_json(silent=True)
         if not data or "message" not in data:
             return jsonify({"error": "Message is required"}), 400
 
